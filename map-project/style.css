@@ -19,3 +19,16 @@ body {
     padding: 5px;
     cursor: pointer;
 }
+
+.location:hover {
+    background-color: rgba(255, 200, 0, 0.8);
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    #map-image {
+        width: 100%;
+    }
+    .location {
+        font-size: 14px;
+    }
+}
