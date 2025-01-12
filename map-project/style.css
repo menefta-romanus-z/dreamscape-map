@@ -1,34 +1,154 @@
+/* General body styling */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
 }
 
+/* Map container styles */
 #map {
     position: relative;
-    display: inline-block;
+    width: 100%;
+    max-width: 1200px; /* Prevents the map from becoming too large */
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 #map-image {
-    width: 800px;
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    opacity: 0.9; /* Slight transparency for overlay */
 }
 
+/* Location markers */
 .location {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #000;
-    padding: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #d3d3d3; /* Light grey */
+    border-radius: 50%;
+    border: 2px solid #000;
     cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .location:hover {
-    background-color: rgba(255, 200, 0, 0.8);
-    font-weight: bold;
+    background-color: #ee82ee; /* Violet */
+    transform: scale(1.2);
 }
+
+/* Custom arrows for external links */
+.location.cliffs, .location.restless-vale, .location.unicorns-grove {
+    width: 0;
+    height: 0;
+    background: none;
+}
+
+/* Cliffs by the Sea Arrow */
+.location.cliffs {
+    border-top: 40px solid transparent; /* Twice the size */
+    border-left: 60px solid #d3d3d3; /* Twice the size */
+    border-bottom: 40px solid transparent;
+    transform: translate(-50%, -50%) rotate(-45deg); /* Diagonal arrow */
+}
+
+.location.cliffs:hover {
+    border-left-color: #ee82ee;
+}
+
+/* Restless Vale Arrow */
+.location.restless-vale {
+    border-top: 40px solid #d3d3d3; /* Twice the size */
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    transform: translate(-50%, -50%) rotate(45deg); /* Adjusted 45 degrees clockwise */
+}
+
+.location.restless-vale:hover {
+    border-top-color: #ee82ee;
+}
+
+/* Unicorn's Grove Arrow */
+.location.unicorns-grove {
+    border-top: 40px solid transparent; /* Twice the size */
+    border-right: 60px solid #d3d3d3; /* Twice the size */
+    border-bottom: 40px solid transparent;
+    transform: translate(-50%, -50%) rotate(180deg); /* Reversed direction */
+}
+
+.location.unicorns-grove:hover {
+    border-right-color: #ee82ee;
+}
+
+/* Specific location positions */
+.location.rock-garden {
+    top: 75%;
+    left: 50%;
+}
+
+.location.cliffs {
+    top: 95%;
+    left: 15%;
+}
+
+.location.observatory {
+    top: 15%;
+    left: 60%;
+}
+
+.location.hedge-maze {
+    top: 40%;
+    left: 60%;
+}
+
+.location.carp-pond {
+    top: 65%;
+    left: 60%;
+}
+
+.location.butterfly-meadow {
+    top: 60%;
+    left: 45%;
+}
+
+.location.large-oak {
+    top: 32%; /* Your specified position */
+    left: 30%; /* Your specified position */
+}
+
+.location.unicorns-grove {
+    top: 18%; /* Your specified position */
+    left: 15%; /* Your specified position */
+}
+
+.location.basin {
+    top: 55%; /* Your specified position */
+    left: 20%; /* Your specified position */
+}
+
+.location.restless-vale {
+    top: 10%; /* Your specified position */
+    left: 90%; /* Your specified position */
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-    #map-image {
-        width: 100%;
+    #map {
+        height: auto; /* Allow map to scale naturally */
     }
+
     .location {
-        font-size: 14px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .location.cliffs, .location.restless-vale, .location.unicorns-grove {
+        border-top-width: 20px;
+        border-left-width: 30px;
+        border-right-width: 30px;
+        border-bottom-width: 20px;
     }
 }

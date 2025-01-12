@@ -1,16 +1,22 @@
+// Debugging Helper: Log when script runs
+console.log("Script loaded successfully");
+
+// Attach hover descriptions
 document.querySelectorAll('.location').forEach(location => {
-    location.addEventListener('click', () => {
-        alert(`You clicked on ${location.id}`);
+    location.addEventListener('mouseover', (e) => {
+        const title = location.getAttribute('title');
+        location.setAttribute('data-hover', title); // Set hover text dynamically
+    });
+
+    location.addEventListener('mouseout', () => {
+        location.removeAttribute('data-hover'); // Remove hover text
     });
 });
 
+// Add click event for future interactions (if needed)
 document.querySelectorAll('.location').forEach(location => {
-    location.addEventListener('click', () => {
-        const locationDetails = {
-            garden: "A place of serenity and continuity.",
-            cliffs: "Where the sea meets the sky, and resilience thrives.",
-            observatory: "A hub of wonder, curiosity, and starlight."
-        };
-        alert(locationDetails[location.id] || "Details not available.");
+    location.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(`Clicked on: ${location.className}`);
     });
 });
