@@ -1,0 +1,156 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Map container styles */
+#map {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Prevents the map from becoming too large */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#map-image {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    opacity: 0.9; /* Slight transparency for overlay */
+}
+
+/* Location markers */
+.location {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #d3d3d3; /* Light grey */
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.location:hover {
+    background-color: #ee82ee; /* Violet */
+    transform: scale(1.2);
+}
+
+/* Custom arrows for external links */
+.location.cliffs, .location.restless-vale, .location.unicorns-grove {
+    width: 0;
+    height: 0;
+    background: none;
+}
+
+.location.cliffs {
+    border-top: 20px solid transparent;
+    border-left: 30px solid #d3d3d3;
+    border-bottom: 20px solid transparent;
+    transform: translate(-50%, -50%) rotate(-45deg); /* Diagonal arrow */
+}
+
+.location.cliffs:hover {
+    border-left-color: #ee82ee;
+}
+
+.location.restless-vale {
+    border-top: 20px solid #d3d3d3;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.location.restless-vale:hover {
+    border-top-color: #ee82ee;
+}
+
+.location.unicorns-grove {
+    border-top: 20px solid transparent;
+    border-right: 30px solid #d3d3d3;
+    border-bottom: 20px solid transparent;
+    transform: translate(-50%, -50%) rotate(180deg); /* Point in the opposite direction */
+}
+
+.location.unicorns-grove:hover {
+    border-right-color: #ee82ee;
+}
+
+/* Specific location positions */
+.location.rock-garden {
+    top: 75%;
+    left: 50%;
+}
+
+.location.cliffs {
+    top: 95%;
+    left: 15%;
+}
+
+.location.observatory {
+    top: 15%;
+    left: 60%;
+}
+
+.location.hedge-maze {
+    top: 40%;
+    left: 60%;
+}
+
+.location.carp-pond {
+    top: 65%;
+    left: 60%;
+}
+
+.location.butterfly-meadow {
+    top: 60%;
+    left: 45%;
+}
+
+.location.large-oak {
+    top: 32%; /* 10% lower */
+    left: 30%; /* 10% to the right */
+}
+
+.location.unicorns-grove {
+    top: 18%;
+    left: 15%;
+}
+
+.location.basin {
+    top: 55%; /* 10% higher */
+    left: 20%; /* 20% to the left */
+}
+
+.location.restless-vale {
+    top: 10%;
+    left: 90%;
+}
+
+/* Hover descriptions */
+.hover-description {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    pointer-events: none; /* Avoid interfering with mouse events */
+    z-index: 1000;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #map {
+        height: auto; /* Allow map to scale naturally */
+    }
+
+    .location {
+        width: 20px;
+        height: 20px;
+    }
+}
