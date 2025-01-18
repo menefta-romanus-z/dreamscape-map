@@ -11,15 +11,15 @@ body {
 #map {
     position: relative;
     width: 100%;
-    max-width: 1200px; /* Prevents the map from becoming too large */
+    max-width: 1200px;
     margin: 0 auto;
     overflow: hidden;
 }
 
 #map-image {
-    width: 100%; /* Full width */
-    height: auto; /* Maintain aspect ratio */
-    opacity: 0.9; /* Slight transparency for overlay */
+    width: 100%;
+    height: auto;
+    opacity: 0.9;
 }
 
 /* Location markers */
@@ -27,7 +27,7 @@ body {
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: #d3d3d3; /* Light grey */
+    background-color: #d3d3d3;
     border-radius: 50%;
     border: 2px solid #000;
     cursor: pointer;
@@ -36,64 +36,92 @@ body {
 }
 
 .location:hover {
-    background-color: #ee82ee; /* Violet */
+    background-color: #ee82ee;
     transform: scale(1.2);
 }
 
-/* Custom arrows for external links */
-.location.cliffs, .location.restless-vale, .location.unicorns-grove {
-    width: 0;
-    height: 0;
-    background: none;
+/* Styling for links */
+.location[href] {
+    border: 2px dashed #000;
 }
 
-.location.cliffs {
-    border-top: 20px solid transparent;
-    border-left: 30px solid #d3d3d3;
-    border-bottom: 20px solid transparent;
-    transform: translate(-50%, -50%) rotate(-45deg); /* Diagonal arrow */
+.location[href]:hover {
+    background-color: #ffa07a;
+    border-color: #ee82ee;
 }
 
-.location.cliffs:hover {
-    border-left-color: #ee82ee;
+/* Subitems */
+.location.subitem {
+    width: 20px;
+    height: 20px;
+    background-color: #a0c4ff;
+    border: 1px solid #444;
+    border-radius: 50%;
 }
 
-.location.restless-vale {
-    border-top: 20px solid #d3d3d3;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    transform: translate(-50%, -50%) rotate(45deg);
+/* Popup styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; /* Adjust width for better readability */
+    max-height: 80vh; /* Limit height to 80% of the viewport */
+    overflow-y: auto; /* Add vertical scrolling for overflow content */
+    display: none;
+    z-index: 1000;
 }
 
-.location.restless-vale:hover {
-    border-top-color: #ee82ee;
+.popup.hidden {
+    display: none;
 }
 
-.location.unicorns-grove {
-    border-top: 20px solid transparent;
-    border-right: 30px solid #d3d3d3;
-    border-bottom: 20px solid transparent;
-    transform: translate(-50%, -50%) rotate(180deg); /* Point in the opposite direction */
+/* Close button styling */
+#popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
 }
 
-.location.unicorns-grove:hover {
-    border-right-color: #ee82ee;
+/* Ensure the close button stays visible */
+#popup-close:focus {
+    outline: none;
 }
 
 /* Specific location positions */
-.location.rock-garden {
+.location.bahamut-tree {
     top: 75%;
     left: 50%;
 }
 
-.location.cliffs {
-    top: 95%;
-    left: 15%;
+.location.passion-flower {
+    top: 79%;
+    left: 51%;
 }
 
-.location.observatory {
-    top: 15%;
-    left: 60%;
+.location.doorstop {
+    top: 80%;
+    left: 45%;
+}
+
+.location.large-oak {
+    top: 32%;
+    left: 30%;
+}
+
+.location.secret-passage {
+    top: 38%;
+    left: 30%;
 }
 
 .location.hedge-maze {
@@ -111,24 +139,45 @@ body {
     left: 45%;
 }
 
-.location.large-oak {
-    top: 32%; /* 10% lower */
-    left: 30%; /* 10% to the right */
-}
-
-.location.unicorns-grove {
-    top: 18%;
-    left: 15%;
-}
-
 .location.basin {
-    top: 55%; /* 10% higher */
-    left: 20%; /* 20% to the left */
+    top: 55%;
+    left: 20%;
 }
 
-.location.restless-vale {
-    top: 10%;
-    left: 90%;
+.location.shallows {
+    top: 75%;
+    left: 20%;
+}
+
+.location.shared-memory-lantern {
+    top: 87%;
+    left: 19%;
+}
+
+.location.menefta-mangrove {
+    top: 79%;
+    left: 22%;
+}
+
+.location.ponyo-buttonwood {
+    top: 80%;
+    left: 25%;
+}
+
+/* Rock Garden and Subitems */
+.location.rock-garden {
+    top: 70%;
+    left: 35%;
+}
+
+.location.mibbs-clovers {
+    top: 72%;
+    left: 40%;
+}
+
+.location.hassan-bonsai-oak {
+    top: 76%;
+    left: 35%;
 }
 
 /* Hover descriptions */
@@ -139,14 +188,14 @@ body {
     padding: 5px;
     border-radius: 5px;
     font-size: 12px;
-    pointer-events: none; /* Avoid interfering with mouse events */
+    pointer-events: none;
     z-index: 1000;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
     #map {
-        height: auto; /* Allow map to scale naturally */
+        height: auto;
     }
 
     .location {

@@ -10,7 +10,7 @@ document.querySelectorAll('.location').forEach(location => {
             hoverElement.className = 'hover-description';
             hoverElement.textContent = title;
             hoverElement.style.position = 'absolute';
-            hoverElement.style.left = `${e.pageX + 10}px`; // Slight offset from cursor
+            hoverElement.style.left = `${e.pageX + 10}px`;
             hoverElement.style.top = `${e.pageY + 10}px`;
             hoverElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
             hoverElement.style.color = 'white';
@@ -31,16 +31,69 @@ document.querySelectorAll('.location').forEach(location => {
     location.addEventListener('mouseout', () => {
         const hoverId = location.getAttribute('data-hover-id');
         if (hoverId) {
-            document.body.removeChild(document.querySelector('.hover-description'));
+            const hoverElement = document.querySelector('.hover-description');
+            if (hoverElement) document.body.removeChild(hoverElement);
             location.removeAttribute('data-hover-id');
         }
     });
 });
 
-// Add click event for debugging
+// Add click event for pop-up handling
 document.querySelectorAll('.location').forEach(location => {
     location.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log(`Clicked on: ${location.className}`);
+        const popup = document.getElementById('popup');
+        const popupContent = document.getElementById('popup-content');
+        const shortDescription = location.getAttribute('data-short');
+        const longDescription = location.getAttribute('data-long');
+
+        if (popup && popupContent) {
+            if (shortDescription) {
+                console.log("Pop-up found and updated.");
+
+                // Populate and display the short description with Read More button
+                popupContent.innerHTML = `
+                    <p>${shortDescription}</p>
+                    ${longDescription ? `<button id="read-more">Read More</button>` : ''}
+                `;
+                popup.classList.remove('hidden');
+                popup.style.display = 'block'; // Ensure visibility
+            }
+
+            // Handle Read More button
+            if (longDescription) {
+                const readMoreBtn = document.getElementById('read-more');
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', () => {
+                        popupContent.innerHTML = `
+                            <p>${longDescription}</p>
+                            <button id="popup-close-long">Close</button>
+                        `;
+                        console.log("Long description displayed.");
+
+                        // Add a close button for long description
+                        const closeLongButton = document.getElementById('popup-close-long');
+                        if (closeLongButton) {
+                            closeLongButton.addEventListener('click', () => {
+                                popup.classList.add('hidden');
+                                popup.style.display = 'none';
+                            });
+                        }
+                    });
+                }
+            }
+        } else {
+            console.log("Pop-up structure not found.");
+        }
+
+        // Close the pop-up
+        const closeButton = document.getElementById('popup-close');
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                popup.classList.add('hidden');
+                popup.style.display = 'none';
+                console.log("Pop-up closed.");
+            });
+        }
     });
 });
